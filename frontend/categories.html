@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body onload="loadCategoriesPage()">
+
+    <div class="layout">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <i class="fa-solid fa-database"></i>
+                <span>KEDB AI</span>
+            </div>
+
+            <nav>
+
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+
+                <a href="known_errors.html">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Known Errors
+                </a>
+
+                <a href="categories.html" class="active">
+                    <i class="fa-solid fa-folder"></i>
+                    Categories
+                </a>
+
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="content">
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>Categories</h1>
+
+                    <p>
+                        Manage all KEDB Categories
+                    </p>
+
+                </div>
+
+                <button class="primary-btn" onclick="openCategoryModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Category
+
+                </button>
+
+            </header>
+
+
+            <!-- Search -->
+
+            <section class="search-section">
+
+                <input
+                    type="text"
+                    id="categorySearch"
+                    placeholder="Search Category..."
+                    onkeyup="filterCategories()"
+                >
+
+            </section>
+
+
+            <!-- Table -->
+
+            <section class="table-card">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Description</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="categoriesTable">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ===========================
+        ADD / EDIT CATEGORY MODAL
+    =========================== -->
+
+    <div class="modal" id="categoryModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="categoryModalTitle">Add Category</h2>
+
+                <span class="close" onclick="closeCategoryModal()">&times;</span>
+
+            </div>
+
+            <form id="categoryForm" onsubmit="saveCategory(event)">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Category Name</label>
+
+                        <input type="text" id="categoryName" required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea id="categoryDescription" rows="5" required></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="secondary-btn" onclick="closeCategoryModal()"> Cancel </button>
+
+                    <button type="submit" class="primary-btn" id="categorySaveBtn" >Save Category </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

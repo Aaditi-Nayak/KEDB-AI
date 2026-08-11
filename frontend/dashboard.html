@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KEDB AI Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body onload="loadDashboard()">
+
+<div class="layout">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-database"></i>
+
+            <span>KEDB AI</span>
+
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html" class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="known_errors.html">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Known Errors
+
+            </a>
+
+            <a href="categories.html">
+
+                <i class="fa-solid fa-folder"></i>
+
+                Categories
+
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </aside>
+
+    <!-- ================= Main ================= -->
+
+    <main class="content">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>
+
+                    Welcome back,
+
+                    <span id="username"></span>
+
+                    👋
+
+                </p>
+
+            </div>
+
+        </header>
+
+                <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <div>
+
+                    <h3>Known Errors</h3>
+
+                    <h1 id="totalErrors">0</h1>
+
+                </div>
+
+                <i class="fa-solid fa-circle-exclamation icon blue"></i>
+
+            </div>
+
+            <div class="card">
+
+                <div>
+
+                    <h3>Categories</h3>
+
+                    <h1 id="totalCategories">0</h1>
+
+                </div>
+
+                <i class="fa-solid fa-folder-open icon green"></i>
+
+            </div>
+
+            <div class="card">
+
+                <div>
+
+                    <h3>Open Issues</h3>
+
+                    <h1 id="openIssues">0</h1>
+
+                </div>
+
+                <i class="fa-solid fa-bug icon orange"></i>
+
+            </div>
+
+            <div class="card">
+
+                <div>
+
+                    <h3>Resolved</h3>
+
+                    <h1 id="resolvedIssues">0</h1>
+
+                </div>
+
+                <i class="fa-solid fa-circle-check icon purple"></i>
+
+            </div>
+
+        </section>
+
+        <section class="ai-card">
+
+            <div>
+
+                <h2>🤖 AI Assistant</h2>
+
+                <p>
+
+                    Ask the AI to diagnose production issues.
+
+                </p>
+
+            </div>
+
+            <div class="ai-search">
+
+                <input
+                    id="question"
+                    type="text"
+                    placeholder="Describe an issue..."
+                >
+
+                <button onclick="askAI()">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Ask AI
+
+                </button>
+            </div>
+
+            <div id="aiResponse"></div>
+
+        </section>
+
+        <section class="table-card">
+
+            <div class="table-header">
+                <div>
+                    <h2>Known Errors</h2>
+                </div>
+
+                <button class="table-btn" onclick="window.location.href='known_errors.html'">
+                    View All
+                </button>
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                    <th>Error</th>
+
+                    <th>Category</th>
+
+                    <th>Status</th>
+
+                    <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="recentErrorsTable"></tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+<div id="viewModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Known Error</h2>
+            <span class="close" onclick="closeViewModal()">&times;</span>
+        </div>
+        <div id="modalBody" class="modal-body">
+
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

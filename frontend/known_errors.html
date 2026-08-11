@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Known Errors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+</head>
+<body onload="loadKnownErrors()">
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-database"></i>
+                <span>KEDB AI</span>
+            </div>
+            <nav>
+
+                <a href="dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+                <a href="known_errors.html" class="active">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    Known Errors
+
+                </a>
+
+                <a href="categories.html">
+
+                    <i class="fa-solid fa-folder"></i>
+
+                    Categories
+
+                </a>
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+        </aside>
+
+        <main class="content">
+            <header class="topbar">
+                <div>
+                    <h1>Known Errors</h1>
+                    <p> Manage all production issues in the Knowledge Error Database</p>
+                </div>
+
+                <button class="primary-btn" onclick="openAddModal()">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Error
+                </button>
+            </header>
+
+            <section class="search-section">
+                <input type="text" id="search" placeholder="Search by title or application" onkeyup="filterErrors()">
+            </section>
+
+            <section class="filters">
+                <select id="applicationFilter" onchange="filterByApplication()">
+                    <option value="">All Applications</option>
+                </select>
+
+                <select id="categoryFilter" onchange="filterCategory()">
+                    <option value="">All Categories</option>
+                </select>
+
+                <select id="statusFilter" onchange="filterStatus()">
+                    <option value="">All Status</option>
+                    <option>Open</option>
+                    <option>Resolved</option>
+                    <option>In Progress</option>
+                </select>
+            </section>
+
+            <section class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Application</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="knownErrorsTable"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="addModal">
+
+        <div class="modal-content add-error-modal">
+
+            <div class="modal-header">
+                <h2>Add Known Error</h2>
+                <span class="close" onclick="closeAddModal()">&times;</span>
+            </div>
+
+            <form id="addErrorForm" onsubmit="createKnownError(event)">
+
+                <div class="form-grid">
+                    <!-- Error Title -->
+                     <div class="form-group">
+
+                        <label for="title">Error Title</label>
+                        <input type="text" id="title" placholder="Enter the error title" required>
+
+                     </div>
+
+                     <!-- Application -->
+                      <div class="form-group">
+                        <label for="application">Application</label>
+                        <input type="text" id="application" placeholder="Enter the application name" required>
+
+                      </div>
+
+                      <!-- Category -->
+                       <div class="form-group full width">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">
+                                    Select a category
+                                </option>
+                            </select>
+                       </div>
+
+                       <!-- ssymptoms -->
+                        <div class="form-group">
+                            <label for="ssymptoms">Symptoms</label>
+
+                            <textarea id="symptoms" placeholder="Describe the symptoms" rows="4" required></textarea>
+
+                        </div>
+
+                        <!-- root cause -->
+                         <div class="form-group">
+                            <label for="rootCause">Root Cause</label>
+                            <textarea id="rootCause" placeholder="Describe the root cause" rows="4" required></textarea>
+
+                         </div>
+
+                         <!-- workaround -->
+                          <div class="form-group">
+                                <label for="workaround">Workaround</label>
+                                <textarea id="workaround" placeholder="Enter a temporary workaround" rows="4" required></textarea>
+
+                          </div>
+
+                          <!-- resolution -->
+                           <div class="form-group">
+                                <label for="resolution">Resolution</label>
+                                <textarea id="resolution" placeholder="Describe the permanant resolution" rows="4" required></textarea>
+
+                           </div>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="closeAddModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Known Error
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="modal" id="viewModal">
+
+        <div class="modal-content view-error-modal">
+
+            <div class="modal-header">
+                
+                <div>
+                    <p class="modal-subtitle">Known Error Details</p>
+                    <h2 id="modalTitle">Known Error</h2>
+                </div>
+
+                <button type="button" class="close" onclick="closeViewModal()" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <div id="modalBody" class="view-modal-body"></div>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

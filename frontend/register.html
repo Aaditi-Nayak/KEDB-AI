@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEDB AI Portal - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>KEDB AI Portal</h1>
+            <p>Create your account</p>
+
+            <form onsubmit="registerUser(event)">
+                <label>Name</label>
+                <input type="text" id="name">
+
+                <label>Email</label>
+                <input type="text" id="email">
+
+                <label>Password</label>
+                <input type="password" id="password">
+
+                <button type="submit">Register</button>
+            </form>
+
+            <p id="message"></p>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

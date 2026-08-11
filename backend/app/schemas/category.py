@@ -1,0 +1,15 @@
+from pydantic import BaseModel
+
+class CategoryCreate(BaseModel):
+
+    name:str
+    description:str|None=None
+
+class CategoryResponse(BaseModel):
+
+    id:int
+    name:str
+    description:str|None
+
+    class Config:
+        from_attributes=True
